@@ -1,0 +1,37 @@
+version: sandbox
+
+services:
+  db:
+    container_name: yasbsp-db
+    hostname: yasbsp-db
+    image: postgres:alpine
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - 5439:5432
+    environment:
+       POSTGRES_USER: diginamic  
+       POSTGRES_PASSWORD: diginamic
+       POSTGRES_DB: biblio
+  # app:
+  #   depends_on:
+  #     - db
+  #   container_name: yasbsp-app
+  #   hostname: yasbsp-app
+  #   image: eclipse-temurin:17-jdk-alpine
+  #   command: ["java", "-jar", "/app.jar"]
+  #   volumes:
+  #     - ./target/sandbox.jar:/app.jar
+  #   ports:
+  #     - 8081:8080
+  #   environment:
+  #     SPRING_DATASOURCE_URL: jdbc:postgresql://yasbsp-db:5432/biblio
+
+volumes:
+  data:
+    name: yasbsp-data
+
+networks:
+  default:
+    name: yasbsp-network
+  

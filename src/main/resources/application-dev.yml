@@ -1,0 +1,17 @@
+spring:
+  thymeleaf:
+    cache: false
+  web:
+    resources:
+      cache:
+        period: 0
+        cachecontrol:
+          max-age: 0
+          no-cache: true
+          must-revalidate: true
+      chain:
+        cache: false
+
+logging:
+  level:
+    '[fr.diginamic.sandbox]': debug
