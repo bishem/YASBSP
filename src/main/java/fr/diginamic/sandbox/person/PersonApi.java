@@ -29,52 +29,52 @@ public interface PersonApi {
   @PostMapping(consumes = "application/json")
   @ResponseStatus(HttpStatus.CREATED)
   @Operation(summary = "create a person")
-  default ResponseEntity<Mono<Person>> create(@RequestBody final Person person) {
-    return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Mono.empty());
+  default Mono<ResponseEntity<Person>> create(@RequestBody final Person person) {
+    return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
   @GetMapping("{id}")
   @Operation(summary = "fetch a person by id")
-  default ResponseEntity<Mono<Person>> fetch(@PathVariable final Long id) {
-    return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Mono.empty());
+  default Mono<ResponseEntity<Person>> fetch(@PathVariable final Long id) {
+    return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
   @GetMapping("all")
   @Operation(summary = "fetch a list of persons by ids")
-  default ResponseEntity<Flux<Person>> fetch(@RequestParam final List<Long> ids) {
-    return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Flux.empty());
+  default Flux<ResponseEntity<Person>> fetch(@RequestParam final List<Long> ids) {
+    return Flux.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
   @GetMapping("match")
   @Operation(summary = "fetch a list of persons by example")
-  default ResponseEntity<Mono<Page<Person>>> fetch(@RequestParam final Person person, @ParameterObject final Pageable pageable) {
-    return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Mono.empty());
+  default Mono<ResponseEntity<Page<Person>>> fetch(/* @RequestParam */ final Person person, @ParameterObject final Pageable pageable) {
+    return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
   @GetMapping
   @Operation(summary = "fetch a page of persons")
-  default ResponseEntity<Mono<Page<Person>>> fetch(@ParameterObject final Pageable pageable) {
-    return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Mono.empty());
+  default Mono<ResponseEntity<Page<Person>>> fetch(@ParameterObject final Pageable pageable) {
+    return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
   @PutMapping(consumes = "application/json")
   @ResponseStatus(HttpStatus.ACCEPTED)
   @Operation(summary = "update a person")
-  default ResponseEntity<Mono<Person>> update(@RequestBody final Person person) {
-    return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Mono.empty());
+  default Mono<ResponseEntity<Person>> update(@RequestBody final Person person) {
+    return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
   @DeleteMapping("{id}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(summary = "delete a person by id")
-  default ResponseEntity<Mono<Void>> delete(@PathVariable final Long id) {
-    return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Mono.empty());
+  default Mono<ResponseEntity<Void>> delete(@PathVariable final Long id) {
+    return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
   @DeleteMapping
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(summary = "delete a list of persons by ids")
-  default ResponseEntity<Mono<Void>> delete(@RequestParam final List<Long> ids) {
-    return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Mono.empty());
+  default Mono<ResponseEntity<Void>> delete(@RequestParam final List<Long> ids) {
+    return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 }

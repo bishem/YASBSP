@@ -1,5 +1,7 @@
 package fr.diginamic.sandbox.person;
 
+import static fr.diginamic.sandbox.core.ExceptionAdvice.notFound;
+
 import java.util.List;
 
 import org.springframework.data.domain.Example;
@@ -8,7 +10,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import fr.diginamic.sandbox.core.ExceptionAdvice;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -27,7 +28,7 @@ public class PersonServiceImplementation implements PersonService {
 
   @Override
   public Mono<Person> find(final Long id) {
-    return Mono.just(repository.findById(id).orElseThrow(ExceptionAdvice.notFound("could not find person with provided id")));
+    return Mono.just(repository.findById(id).orElseThrow(notFound("could not find person with provided id")));
   }
 
   @Override

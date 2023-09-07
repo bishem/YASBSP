@@ -18,42 +18,64 @@ public class PersonResource implements PersonApi {
   private final PersonService service;
 
   @Override
-  public ResponseEntity<Mono<Person>> create(final Person person) {
-    return ResponseEntity.ok(service.save(person));
+  public Mono<ResponseEntity<Person>> create(final Person person) {
+    return service
+        .save(person)
+        .map(ResponseEntity::ok);
   }
 
   @Override
-  public ResponseEntity<Mono<Void>> delete(final Long id) {
-    return ResponseEntity.ok(service.delete(id));
+  public Mono<ResponseEntity<Void>> delete(final Long id) {
+    return service
+        .delete(id)
+        .map(deleted -> ResponseEntity
+            .noContent()
+            .build());
   }
 
   @Override
-  public ResponseEntity<Mono<Void>> delete(final List<Long> ids) {
-    return PersonApi.super.delete(ids);
+  public Mono<ResponseEntity<Void>> delete(final List<Long> ids) {
+    return service
+        .delete(ids)
+        .map(deleted -> ResponseEntity
+            .noContent()
+            .build());
   }
 
   @Override
-  public ResponseEntity<Mono<Person>> fetch(final Long id) {
-    return PersonApi.super.fetch(id);
+  public Mono<ResponseEntity<Person>> fetch(final Long id) {
+    return service
+        .find(id)
+        .map(ResponseEntity::ok);
   }
 
   @Override
-  public ResponseEntity<Flux<Person>> fetch(final List<Long> ids) {
-    return PersonApi.super.fetch(ids);
+  public Flux<ResponseEntity<Person>> fetch(final List<Long> ids) {
+    return service
+        .find(ids)
+        .map(ResponseEntity::ok);
   }
 
   @Override
-  public ResponseEntity<Mono<Page<Person>>> fetch(final Person person, final Pageable pageable) {
-    return PersonApi.super.fetch(person, pageable);
+  public Mono<ResponseEntity<Page<Person>>> fetch(final Person person, final Pageable pageable) {
+    return service
+        .find(person, pageable)
+        .map(ResponseEntity::ok);
   }
 
   @Override
-  public ResponseEntity<Mono<Page<Person>>> fetch(final Pageable pageable) {
-    return PersonApi.super.fetch(pageable);
+  public Mono<ResponseEntity<Page<Person>>> fetch(final Pageable pageable) {
+    return service
+        .find(pageable)
+        .map(ResponseEntity::ok);
   }
 
   @Override
-  public ResponseEntity<Mono<Person>> update(final Person person) {
-    return PersonApi.super.update(person);
+  public Mono<ResponseEntity<Person>> update(final Person person) {
+    return service
+        .update(person)
+        .map(updated -> ResponseEntity
+            .accepted()
+            .body(updated));
   }
 }
