@@ -21,6 +21,7 @@ spring:
     show-sql: true
 
 springdoc:
+  show-actuator: true
   api-docs:
     path: /api
   swagger-ui:
