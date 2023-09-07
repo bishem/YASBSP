@@ -47,7 +47,7 @@ public interface PersonApi {
 
   @GetMapping("match")
   @Operation(summary = "fetch a list of persons by example")
-  default ResponseEntity<Mono<Page<Person>>> fetch(@ParameterObject final Person person, @ParameterObject final Pageable pageable) {
+  default ResponseEntity<Mono<Page<Person>>> fetch(@RequestParam final Person person, @ParameterObject final Pageable pageable) {
     return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).body(Mono.empty());
   }
 
