@@ -1,16 +1,16 @@
 init:
 	docker compose down && \
 	docker compose up -d && \
-	mvn clean spring-boot:run -Dspring-boot.run.profiles=init,dev
+	./mvnw clean spring-boot:run -Dspring-boot.run.profiles=init,dev
 
 cluster:
 	docker compose down && \
 	docker compose up -d && \
-	mvn clean spring-boot:run  -Dspring-boot.run.profiles=dev
+	./mvnw clean spring-boot:run  -Dspring-boot.run.profiles=dev
 
 # cluster:
 # 	docker compose down && \
-# 	mvn clean package && \
+# 	./mvnw clean package && \
 # 	docker compose up
 
 purge:
