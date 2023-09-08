@@ -38,7 +38,7 @@ public interface PersonApi {
     return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
-  @GetMapping("all")
+  @GetMapping("many")
   @Operation(summary = "fetch a list of persons by ids")
   default Mono<ResponseEntity<Page<Person>>> fetch(
       @RequestParam final List<Long> ids,
@@ -74,7 +74,7 @@ public interface PersonApi {
     return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
-  @DeleteMapping
+  @DeleteMapping("many")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(summary = "delete a list of persons by ids")
   default Mono<ResponseEntity<Void>> delete(@RequestParam final List<Long> ids) {

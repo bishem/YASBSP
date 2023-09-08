@@ -1,0 +1,24 @@
+version: dev
+
+services:
+  db:
+    container_name: yasbsp-db
+    hostname: yasbsp-db
+    image: postgres:alpine
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - 5439:5432
+    environment:
+       POSTGRES_USER: diginamic  
+       POSTGRES_PASSWORD: diginamic
+       POSTGRES_DB: biblio
+
+volumes:
+  data:
+    name: yasbsp-data
+
+networks:
+  default:
+    name: yasbsp-network
+  
