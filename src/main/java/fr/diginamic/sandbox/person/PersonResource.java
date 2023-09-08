@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -50,9 +49,9 @@ public class PersonResource implements PersonApi {
   }
 
   @Override
-  public Flux<ResponseEntity<Person>> fetch(final List<Long> ids) {
+  public Mono<ResponseEntity<Page<Person>>> fetch(final List<Long> ids, final Pageable pageable) {
     return service
-        .find(ids)
+        .find(ids, pageable)
         .map(ResponseEntity::ok);
   }
 

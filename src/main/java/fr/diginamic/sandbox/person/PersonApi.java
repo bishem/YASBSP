@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Tag(name = "Person", description = "API for the person domain")
@@ -41,13 +40,17 @@ public interface PersonApi {
 
   @GetMapping("all")
   @Operation(summary = "fetch a list of persons by ids")
-  default Flux<ResponseEntity<Person>> fetch(@RequestParam final List<Long> ids) {
-    return Flux.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
+  default Mono<ResponseEntity<Page<Person>>> fetch(
+      @RequestParam final List<Long> ids,
+      @ParameterObject final Pageable pageable) {
+    return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 
   @GetMapping("match")
   @Operation(summary = "fetch a list of persons by example")
-  default Mono<ResponseEntity<Page<Person>>> fetch(/* @RequestParam */ final Person person, @ParameterObject final Pageable pageable) {
+  default Mono<ResponseEntity<Page<Person>>> fetch(
+      @ParameterObject final Person person,
+      @ParameterObject final Pageable pageable) {
     return Mono.just(ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build());
   }
 

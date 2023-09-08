@@ -1,7 +1,6 @@
 package fr.diginamic.sandbox.person;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.reactive.result.view.Rendering;
@@ -18,10 +17,9 @@ public class PersonController {
   private final PersonService service;
 
   @GetMapping("/home")
-  public Mono<Rendering> home() {
+  public Mono<Rendering> home(final Pageable pageable) {
     return service
-        .find(PageRequest.of(0, 100))
-        .map(Page::getContent)
+        .find(pageable)
         .doOnNext(personns -> log.info("personns: {}", personns))
         .map(personns -> Rendering
             .view("home")

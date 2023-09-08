@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -22,7 +21,7 @@ public class PersonServiceImplementation implements PersonService {
 
   @Override
   public Mono<Person> save(final Person person) {
-    Assert.isNull(person.id(), "person id must be null");
+    Assert.isNull(person.getId(), "person id must be null");
     return Mono.just(repository.save(person));
   }
 
@@ -37,8 +36,8 @@ public class PersonServiceImplementation implements PersonService {
   }
 
   @Override
-  public Flux<Person> find(final List<Long> ids) {
-    return Flux.just(repository.findAllById(ids).toArray(Person[]::new));
+  public Mono<Page<Person>> find(final List<Long> ids, final Pageable pageable) {
+    return Mono.just(repository.findPageByIdIn(ids, pageable));
   }
 
   @Override
@@ -60,7 +59,7 @@ public class PersonServiceImplementation implements PersonService {
 
   @Override
   public Mono<Person> update(final Person person) {
-    Assert.notNull(person.id(), "person id must not be null");
+    Assert.notNull(person.getId(), "person id must not be null");
     return Mono.just(repository.save(person));
   }
 }

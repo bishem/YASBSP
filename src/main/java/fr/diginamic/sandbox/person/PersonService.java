@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface PersonService {
@@ -14,11 +13,11 @@ public interface PersonService {
 
   Mono<Person> find(Long id);
 
-  Flux<Person> find(final List<Long> ids);
+  Mono<Page<Person>> find(final List<Long> ids, final Pageable pageable);
 
   Mono<Page<Person>> find(Person person, Pageable pageable);
 
-  Mono<Page<Person>> find(Pageable pageable);
+  Mono<Page<Person>> find(final Pageable pageable);
 
   Mono<Person> update(Person person);
 

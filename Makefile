@@ -1,20 +1,17 @@
 init:
-	docker compose stop && \
-	docker compose start -d && \
+	docker compose down && \
+	docker compose up -d && \
 	./mvnw clean spring-boot:run -Dspring-boot.run.profiles=init,dev
 
 cluster:
-	docker compose stop && \
-	docker compose start -d && \
+	docker compose down && \
+	docker compose up -d && \
 	./mvnw clean spring-boot:run  -Dspring-boot.run.profiles=dev
 
 # cluster:
 # 	docker compose down && \
 # 	./mvnw clean package && \
 # 	docker compose up
-
-stop:
-	docker compose stop
 
 down:
 	docker compose down
